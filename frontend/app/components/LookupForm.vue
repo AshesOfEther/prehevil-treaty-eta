@@ -3,8 +3,7 @@
 		<label>Country</label>
 		<select required>
 			<option value="" selected disabled hidden>Select...</option>
-			<option>Hello,</option>
-			<option>World!</option>
+			<option v-for="(country, code) in countries" :key="code">{{ country.name }}</option>
 		</select>
 		<label>Document number</label>
 		<input type="text" placeholder="e.g. AB123456" required>
@@ -13,6 +12,9 @@
 		</div>
 	</form>
 </template>
+<script setup lang="ts">
+import { countries } from "@/common";
+</script>
 <style>
 .lookup-form {
 	display: grid;

@@ -1,0 +1,170 @@
+{
+	"ALR": {
+		"name": "Alure Regions",
+ 		"status": "required"
+	},
+	"ANT": {
+		"name": "Anatoli",
+ 		"status": "required"
+	},
+	"AAB": {
+		"name": "Auckland",
+ 		"status": "required"
+	},
+	"ARA": {
+		"name": "Aura Regions",
+ 		"status": "required"
+	},
+	"BAT": {
+		"name": "Banatown",
+ 		"status": "required"
+	},
+	"BFU": {
+		"name": "Basura",
+ 		"status": "required"
+	},
+	"BBT": {
+		"name": "Birch Boat Town",
+ 		"status": "required"
+	},
+	"BHM": {
+		"name": "Bohemia",
+ 		"status": "ftz"
+	},
+	"GCV": {
+		"name": "Cat Kingdom",
+ 		"status": "required"
+	},
+	"CYP": {
+		"name": "Cypress",
+ 		"status": "required"
+	},
+	"EGL": {
+		"name": "Eagle City",
+ 		"status": "required"
+	},
+	"FDG": {
+		"name": "Gizmo City",
+ 		"status": "required"
+	},
+	"FGL": {
+		"name": "Fegal",
+ 		"status": "ftz"
+	},
+	"FBG": {
+		"name": "Furryburg",
+ 		"status": "required"
+	},
+	"HAL": {
+		"name": "Halcandra",
+ 		"status": "required"
+	},
+	"INK": {
+		"name": "Inkytown",
+ 		"status": "required"
+	},
+	"KRP": {
+		"name": "Kemonomimi Republic",
+ 		"status": "required"
+	},
+	"KUJ": {
+		"name": "Kingdom of Union Jacks",
+ 		"status": "required"
+	},
+	"KWL": {
+		"name": "Knowle Regions",
+ 		"status": "required"
+	},
+	"LRL": {
+		"name": "landrepeatland",
+ 		"status": "required"
+	},
+	"LDI": {
+		"name": "Legal District",
+ 		"status": "required"
+	},
+	"LLI": {
+		"name": "Lion Land",
+ 		"status": "required"
+	},
+	"MES": {
+		"name": "Mart's Extraordinarily Sublime State",
+ 		"status": "required"
+	},
+	"MOJ": {
+		"name": "Mojave",
+ 		"status": "required"
+	},
+	"ORP": {
+		"name": "Open Republic",
+ 		"status": "required"
+	},
+	"OWN": {
+		"name": "Ownage",
+ 		"status": "required"
+	},
+	"PLC": {
+		"name": "PLC",
+ 		"status": "required"
+	},
+	"PLI": {
+		"name": "Plutonia Imperium",
+ 		"status": "required"
+	},
+	"UFO": {
+		"name": "Rahilu's Mysterious UFO",
+ 		"status": "required"
+	},
+	"ROQ": {
+		"name": "Republic of Québec",
+ 		"status": "required"
+	},
+	"SFR": {
+		"name": "Solstice",
+ 		"status": "ftz"
+	},
+	"SRN": {
+		"name": "Sorena",
+ 		"status": "required"
+	},
+	"SLP": {
+		"name": "Sulópolis",
+ 		"status": "required"
+	},
+	"SMS": {
+		"name": "Summasol",
+ 		"status": "required"
+	},
+	"TAY": {
+		"name": "TAY",
+ 		"status": "waiver"
+	},
+	"SUN": {
+		"name": "Union of Soviet Sovereign Republics",
+ 		"status": "required"
+	},
+	"VCT": {
+		"name": "Veronian Controlled Territories",
+ 		"status": "required"
+	},
+	"VZN": {
+		"name": "Vosazen",
+ 		"status": "required"
+	},
+	"VYX": {
+		"name": "Vyxalla",
+ 		"status": "required"
+	},
+	"COW": {
+		"name": "Warp",
+ 		"status": "required"
+	},
+	"WCI": {
+		"name": "Whale City",
+ 		"status": "required"
+	},
+	"YNO": {
+		"name": "Yavno Republic",
+ 		"status": "required"
+	}
+}
