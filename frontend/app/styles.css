@@ -1,0 +1,59 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+:root {
+	--color-accent: #C37F00;
+	--color-accent-light: #EB9800;
+	--color-gray: #484848;
+	--color-gray-light: #999999;
+	--color-link: #2288ff;
+}
+
+body {
+	margin: 0;
+	line-height: 1.4;
+
+	background-color: #222222;
+	color: white;
+}
+
+main {
+	max-width: 768px;
+	margin: 0 auto 0 auto;
+	padding: 1rem;
+}
+
+button, input, select {
+	border: none;
+	color: white;
+	font-size: 1rem;
+
+	padding: 0.5rem;
+}
+
+button, input[type="submit"] {
+	background-color: var(--color-accent);
+	font-weight: bold;
+	transition: background-color 0.2s ease-out;
+}
+
+:is(button, input[type="submit"]):hover {
+	background-color: var(--color-accent-light);
+}
+
+input[type="submit"]:disabled {
+	background-color: var(--color-gray-light);
+}
+
+input, select {
+	background-color: var(--color-gray);
+}
+
+select:has([value=""]:checked) {
+	color: var(--color-gray-light);
+}
+
+a {
+	color: var(--color-link);
+}
