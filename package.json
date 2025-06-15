@@ -1,7 +1,8 @@
 {
 	"name": "prehevil-treaty-eta",
-	"workspaces": ["frontend"],
+	"workspaces": ["backend", "frontend"],
 	"scripts": {
+		"backend:dev": "npm run dev --workspace=backend",
 		"frontend:build": "npm run build --workspace=frontend",
 		"frontend:dev": "npm run dev --workspace=frontend",
 		"frontend:preview": "npm run preview --workspace=frontend"
