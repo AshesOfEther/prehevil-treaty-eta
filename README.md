@@ -6,30 +6,31 @@ This is the website for applying for electronic travel authorizations for the Pr
 
 It is split into a frontend and a backend.
 
-## Frontend
+## Development
 
-The frontend uses TypeScript, Vue and Nuxt.
+Node.js v22 or later must be installed to build and run the project.
 
-Node.js must be installed. The following commands can be run in the `frontend` directory.
+The project is written in TypeScript. The backend uses Node.js, and the frontend uses Vue and Nuxt.
 
-To install dependencies:
+First, install dependencies:
 ```
 npm install
 ```
 
-To view the site during development with automatic reload:
+To run the backend or frontend in development mode with automatic reload:
 ```
-npm run dev
+npm run backend:dev
+npm run frontend:dev
 ```
 
-To build the site:
+To build the frontend:
 ```
-npm run build
+npm run frontend:build
 ```
 
 The output will be in `frontend/dist`.
 
-To preview the site after building:
+To preview the frontend after building:
 ```
-npm run preview
+npm run frontend:preview
 ```
