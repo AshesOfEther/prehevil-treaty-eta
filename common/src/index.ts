@@ -1,4 +1,4 @@
-import countriesJson from "@/../../countries.json";
+import countriesJson from "./countries.json" with { type: "json" };
 
 interface Country {
 	name: string;

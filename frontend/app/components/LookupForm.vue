@@ -13,7 +13,7 @@
 	</form>
 </template>
 <script setup lang="ts">
-import { countries } from "@/common";
+import { countries } from "prehevil-treaty-eta-common";
 </script>
 <style>
 .lookup-form {

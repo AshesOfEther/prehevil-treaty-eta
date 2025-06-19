@@ -1,0 +1,6 @@
+{
+	"name": "prehevil-treaty-eta-common",
+	"private": true,
+	"type": "module",
+	"main": "src/index.ts"
+}
