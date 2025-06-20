@@ -1,7 +1,5 @@
 import { H3, serve } from "h3";
 
-const app = new H3();
+import api from "./api.ts";
 
-app.get("/hello", (event) => "Hello, World!");
-
-serve(app, { port: 3000 });
+serve(api, { port: 3000 });
