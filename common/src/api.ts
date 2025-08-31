@@ -14,6 +14,26 @@ export interface ApiErrorResponse {
 	error: string;
 }
 
+export interface ApiApplyRequest {
+	passport: Passport;
+	username: string;
+	hasCriminalConviction: boolean;
+	hasBeenDeported: boolean;
+	hasTuberculosis: boolean;
+}
+
+export interface ApiApplyAcceptResponse {
+	accepted: true;
+	expiresAt: string;
+}
+
+export interface ApiApplyRejectResponse {
+	accepted: false;
+	reason: "passportExpired" | "other";
+}
+
+export type ApiApplyResponse = ApiApplyAcceptResponse | ApiApplyRejectResponse;
+
 export interface ApiAttestRequest {
 	passport: Passport;
 }
