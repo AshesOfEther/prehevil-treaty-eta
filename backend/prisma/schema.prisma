@@ -1,0 +1,32 @@
+datasource db {
+	provider = "postgresql"
+	url = env("PREHEVIL_TREATY_DATABASE_URL")
+}
+
+generator client {
+	provider = "prisma-client-js"
+}
+
+model Eta {
+	id Int @id @default(autoincrement())
+	issuedAt DateTime @default(now())
+	expiresAt DateTime
+
+	passport Passport @relation(fields: [passportNumber], references: [passportNumber])
+	passportNumber String @db.Char(8) @unique
+}
+
+model Passport {
+	passportNumber String @db.Char(8) @id
+	username String
+
+	givenName String
+	familyName String
+	issuingAuthority String @db.Char(3)
+	nationality String
+	expiryDate DateTime @db.Date
+	dateOfBirth DateTime @db.Date
+	placeOfBirth String
+
+	eta Eta?
+}
