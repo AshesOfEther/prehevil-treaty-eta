@@ -7,6 +7,7 @@
 	--color-accent-light: #EB9800;
 	--color-gray: #484848;
 	--color-gray-light: #999999;
+	--color-gray-dark: #2e2e2e;
 	--color-link: #2288ff;
 }
 
@@ -22,6 +23,22 @@ main {
 	max-width: 768px;
 	margin: 0 auto 0 auto;
 	padding: 1rem;
+}
+
+.button-row {
+	display: flex;
+	gap: 0.5rem;
+	margin: 1rem 0 1rem 0;
+}
+
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+legend {
+	padding: 1rem 0 0.5rem 0;
 }
 
 button, input, select {
@@ -56,4 +73,24 @@ select:has([value=""]:checked) {
 
 a {
 	color: var(--color-link);
+}
+
+table {
+	border-spacing: 0;
+}
+
+th, td {
+	padding: 0.5rem;
+}
+
+th {
+	text-align: end;
+}
+
+tr:nth-of-type(odd) {
+	background-color: #333333;
+}
+
+tr:nth-of-type(even) {
+	background-color: #404040;
 }
