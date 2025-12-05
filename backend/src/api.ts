@@ -83,7 +83,8 @@ api.post("/apply", async (event): ApiResponse<ApiApplyResponse> => {
 		};
 	}
 
-	if (country.status == "reject" || body.hasBeenDeported || body.hasCriminalConviction || body.hasTuberculosis) {
+	const answers = body.answers;
+	if (country.status == "reject" || answers.hasBeenDeported || answers.hasCriminalConviction || answers.hasTuberculosis) {
 		return {
 			accepted: false,
 			reason: "other"
@@ -131,6 +132,6 @@ api.post("/apply", async (event): ApiResponse<ApiApplyResponse> => {
 		accepted: true,
 		expiresAt: expiresAt.toISOString()
 	};
-} );
+});
 
 export default api;

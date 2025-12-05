@@ -10,6 +10,12 @@ export interface Passport {
 	passportNumber: string;
 }
 
+export interface Answers {
+	hasCriminalConviction: boolean;
+	hasBeenDeported: boolean;
+	hasTuberculosis: boolean;
+}
+
 export interface ApiErrorResponse {
 	error: string;
 }
@@ -17,9 +23,7 @@ export interface ApiErrorResponse {
 export interface ApiApplyRequest {
 	passport: Passport;
 	username: string;
-	hasCriminalConviction: boolean;
-	hasBeenDeported: boolean;
-	hasTuberculosis: boolean;
+	answers: Answers;
 }
 
 export interface ApiApplyAcceptResponse {
