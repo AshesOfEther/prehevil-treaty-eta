@@ -35,7 +35,7 @@
 			</tr>
 		</table>
 		<div class="button-row">
-			<button @click="emit('tryAgain')">Try again</button>
+			<button @click="emit('try-again')">Try again</button>
 			<button @click="emit('continue')">Continue</button>
 		</div>
 	</div>
@@ -46,6 +46,7 @@
 <script setup lang="ts">
 import { countries, type Passport } from 'prehevil-treaty-eta-common';
 import { beam, type BeamErrorCode, type BeamResult } from '~/beam';
+import { formatDate } from '~/utils';
 
 const errorMessages = {
 	"timeout": "You did not run the command and/or select a passport within the time limit.",
@@ -60,7 +61,7 @@ const props = defineProps<{
 const passport = defineModel<Passport | null>();
 
 const emit = defineEmits<{
-	(event: "tryAgain"): void;
+	(event: "try-again"): void;
 	(event: "continue"): void;
 }>();
 
@@ -86,8 +87,19 @@ async function beginBeam() {
 function copyCommand() {
 	navigator.clipboard.writeText(`/passport beam ${beamCode.value}`);
 }
-
-function formatDate(date: string) {
-	return new Date(date).toLocaleString("en-US", { dateStyle: "long", timeZone: "UTC" });
-}
 </script>
+<style>
+#beam-command-row {
+	display: flex;
+	gap: 0.5rem;
+}
+
+#beam-command {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+	font-size: 1rem;
+	line-height: inherit;
+	background-color: var(--color-gray-dark);
+}
+</style>

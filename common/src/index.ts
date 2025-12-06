@@ -1,6 +1,6 @@
 import countriesJson from "./countries.json" with { type: "json" };
 
-interface Country {
+export interface Country {
 	name: string;
 	status: "required" | "waiver" | "ftz" | "reject";
 }
