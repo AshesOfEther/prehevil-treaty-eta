@@ -1,10 +1,10 @@
 <template>
-	<div v-if="country?.status == 'ftz'">
+	<div v-if="country?.status == 'ftz'" class="card card-good">
 		<p>
 			You do not need to apply for an ETA, as you are a citizen of a Prehevil Treaty free-travel state.
 		</p>
 	</div>
-	<div v-else-if="country?.status == 'waiver'">
+	<div v-else-if="country?.status == 'waiver'" class="card card-good">
 		<p>
 			You do not need to apply for an ETA, as you are a citizen of a Prehevil Treaty permit waiver state.
 		</p>
@@ -15,7 +15,7 @@
 	<div v-else-if="country?.status == 'required'">
 		<p>Please answer the questions below to determine if you are eligible for an ETA.</p>
 	</div>
-	<div v-else>
+	<div v-else class="card card-error">
 		<p>You are not eligible to apply for an ETA under this arrangement.</p>
 		<p>Please contact the diplomatic mission of your destination country to apply for a visa.</p>
 	</div>
@@ -62,10 +62,10 @@
 		</template>
 
 	</form>
-	<div v-if="country?.status == 'waiver' && canEnter">
+	<div v-if="country?.status == 'waiver' && canEnter" class="card card-good">
 		<p>You are elligible to enter the free-travel zone under this arrangement and do not need an ETA.</p>
 	</div>
-	<div v-if="country?.status == 'waiver' && needsVisa">
+	<div v-if="country?.status == 'waiver' && needsVisa" class="card card-error">
 		<p>You will need a visa to be able to enter the free-travel zone.</p>
 		<p>Please contact your destination country's embassy for further assistance.</p>
 	</div>

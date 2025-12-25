@@ -94,3 +94,15 @@ tr:nth-of-type(odd) {
 tr:nth-of-type(even) {
 	background-color: #404040;
 }
+
+.card {
+	padding: 0.5rem;
+}
+
+.card-good {
+	background-color: #006600;
+}
+
+.card-error {
+	background-color: #660000;
+}

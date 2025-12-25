@@ -39,7 +39,7 @@
 			<button @click="emit('continue')">Continue</button>
 		</div>
 	</div>
-	<div v-else-if="result?.status == 'error'">
+	<div v-else-if="result?.status == 'error'" class="card card-error">
 		{{ errorMessages[result.error] }}
 	</div>
 </template>

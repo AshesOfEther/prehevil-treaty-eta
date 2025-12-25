@@ -22,7 +22,7 @@
 			<input type="submit" value="I am ready" />
 		</template>
 
-		<div v-if="hasEpassportPlus == 'no'">
+		<div v-if="hasEpassportPlus == 'no'" class="card card-error">
 			Lorem ipsum dolor sit amet
 		</div>
 	</form>
