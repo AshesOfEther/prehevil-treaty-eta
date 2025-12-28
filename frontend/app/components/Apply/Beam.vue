@@ -34,14 +34,23 @@
 				<td>{{ formatDate(result.passport.expiryDate) }}</td>
 			</tr>
 		</table>
+		<div>
+
+		</div>
 		<div class="button-row">
 			<button @click="emit('try-again')">Try again</button>
 			<button @click="emit('continue')">Continue</button>
 		</div>
 	</div>
-	<div v-else-if="result?.status == 'error'" class="card card-error">
-		{{ errorMessages[result.error] }}
+	<div v-else-if="result?.status == 'error'">
+		<div class="card card-error">
+			{{ errorMessages[result.error] }}
+		</div>
+		<div class="button-row">
+			<button @click="emit('try-again')">Try again</button>
+		</div>
 	</div>
+
 </template>
 <script setup lang="ts">
 import { countries, type Passport } from 'prehevil-treaty-eta-common';
