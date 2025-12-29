@@ -35,7 +35,10 @@
 					<td>{{ formatDate(result.passport.expiryDate) }}</td>
 				</tr>
 			</table>
-			<div v-if="country == null" class="card card-error">
+			<div v-if="result.passport.isExpired" class="card card-error">
+				<p>This passport is expired. Please contact the issuing authority to request a new one.</p>
+			</div>
+			<div v-else-if="country == null" class="card card-error">
 				<p>The issuing authority of this passport is not recognized. Please contact support for assistance.</p>
 			</div>
 			<div v-else-if="country.status == 'ftz'" class="card card-good">
@@ -87,7 +90,10 @@ const result = ref<BeamResult | null>();
 
 const abortController = ref<AbortController | null>();
 
-const canContinue = computed(() => result.value?.status == "success" && ["waiver", "required"].includes(props.country?.status ?? ""));
+const canContinue = computed(() =>
+	result.value?.status == "success" &&
+	!result.value.passport.isExpired &&
+	["waiver", "required"].includes(props.country?.status ?? ""));
 
 onBeforeMount(() => beginBeam());
 onUnmounted(() => abortController.value?.abort());
