@@ -1,10 +1,5 @@
 <template>
-	<div v-if="country?.status == 'ftz'" class="card card-good">
-		<p>
-			You do not need to apply for an ETA, as you are a citizen of a Prehevil Treaty free-travel state.
-		</p>
-	</div>
-	<div v-else-if="country?.status == 'waiver'" class="card card-good">
+	<div v-if="country?.status == 'waiver'" class="card card-good">
 		<p>
 			You do not need to apply for an ETA, as you are a citizen of a Prehevil Treaty permit waiver state.
 		</p>
@@ -12,14 +7,8 @@
 			Please answer the questions below to determine if you are elligible to enter the free-travel zone.
 		</p>
 	</div>
-	<div v-else-if="country?.status == 'required'">
-		<p>Please answer the questions below to determine if you are eligible for an ETA.</p>
-	</div>
-	<div v-else class="card card-error">
-		<p>You are not eligible to apply for an ETA under this arrangement.</p>
-		<p>Please contact the diplomatic mission of your destination country to apply for a visa.</p>
-	</div>
-	<form v-if="['waiver', 'required'].includes(country?.status ?? '')" @submit.prevent="emit('continue')">
+	<p v-else>Please answer the questions below to determine if you are eligible for an ETA.</p>
+	<form @submit.prevent="emit('continue')">
 		<fieldset>
 			<legend>Do you have any criminal convictions?</legend>
 			<div>

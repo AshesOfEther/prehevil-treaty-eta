@@ -59,7 +59,7 @@ button, input[type="submit"] {
 	background-color: var(--color-accent-light);
 }
 
-input[type="submit"]:disabled {
+:is(button, input[type="submit"]):disabled {
 	background-color: var(--color-gray-light);
 }
 

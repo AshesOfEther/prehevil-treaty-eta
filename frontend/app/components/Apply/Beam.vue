@@ -10,50 +10,57 @@
 			<option value="" selected disabled hidden>Select debug passport...</option>
 		</select>
 	</div>
-	<div v-else-if="result?.status == 'success'">
-		<p>Please verify that the below details are correct before continuing:</p>
-		<table>
-			<tr>
-				<th>Issuing authority</th>
-				<td>{{ countries[result.passport.issuingAuthority]?.name ?? `Unknown (${result.passport.issuingAuthority})` }}</td>
-			</tr>
-			<tr>
-				<th>Name</th>
-				<td>{{ result.passport.familyName }}, {{ result.passport.givenName }}</td>
-			</tr>
-			<tr>
-				<th>Document number</th>
-				<td>{{ result.passport.passportNumber }}</td>
-			</tr>
-			<tr>
-				<th>Date of birth</th>
-				<td>{{ formatDate(result.passport.dateOfBirth) }}</td>
-			</tr>
-			<tr>
-				<th>Date of expiry</th>
-				<td>{{ formatDate(result.passport.expiryDate) }}</td>
-			</tr>
-		</table>
-		<div>
-
-		</div>
-		<div class="button-row">
-			<button @click="emit('try-again')">Try again</button>
-			<button @click="emit('continue')">Continue</button>
-		</div>
-	</div>
-	<div v-else-if="result?.status == 'error'">
-		<div class="card card-error">
+	<div v-if="result != null">
+		<template v-if="result.status == 'success'">
+			<p>Please verify that the below details are correct before continuing:</p>
+			<table>
+				<tr>
+					<th>Issuing authority</th>
+					<td>{{ countries[result.passport.issuingAuthority]?.name ?? `Unknown (${result.passport.issuingAuthority})` }}</td>
+				</tr>
+				<tr>
+					<th>Name</th>
+					<td>{{ result.passport.familyName }}, {{ result.passport.givenName }}</td>
+				</tr>
+				<tr>
+					<th>Document number</th>
+					<td>{{ result.passport.passportNumber }}</td>
+				</tr>
+				<tr>
+					<th>Date of birth</th>
+					<td>{{ formatDate(result.passport.dateOfBirth) }}</td>
+				</tr>
+				<tr>
+					<th>Date of expiry</th>
+					<td>{{ formatDate(result.passport.expiryDate) }}</td>
+				</tr>
+			</table>
+			<div v-if="country == null" class="card card-error">
+				<p>The issuing authority of this passport is not recognized. Please contact support for assistance.</p>
+			</div>
+			<div v-else-if="country.status == 'ftz'" class="card card-good">
+				<p>You do not need to apply for an ETA, as you are a citizen of a Prehevil Treaty free-travel state.</p>
+			</div>
+			<div v-else-if="country.status == 'waiver'" class="card card-good">
+				<p>You probably do not need an ETA, as you are a citizen of a Prehevil Treaty permit waiver state.</p>
+				<p>You may continue to see if you are eligible to enter the free-travel zone under this arrangement</p>
+			</div>
+			<div v-else-if="country.status == 'reject'" class="card card-bad">
+				<p>You are not eligible to apply for an ETA under this arrangement.</p>
+				<p>Please contact the diplomatic mission of your destination country to apply for a visa.</p>
+			</div>
+		</template>
+		<div v-else-if="result.status == 'error'" class="card card-error">
 			{{ errorMessages[result.error] }}
 		</div>
 		<div class="button-row">
 			<button @click="emit('try-again')">Try again</button>
+			<button @click="emit('continue')" :disabled="!canContinue">Continue</button>
 		</div>
 	</div>
-
 </template>
 <script setup lang="ts">
-import { countries, type Passport } from 'prehevil-treaty-eta-common';
+import { countries, type Country, type Passport } from 'prehevil-treaty-eta-common';
 import { beam, type BeamErrorCode, type BeamResult } from '~/beam';
 import { formatDate } from '~/utils';
 
@@ -65,6 +72,7 @@ const errorMessages = {
 const props = defineProps<{
 	username: string;
 	passportNumber: string;
+	country: Country | null;
 }>();
 
 const passport = defineModel<Passport | null>();
@@ -78,6 +86,8 @@ const beamCode = ref<string | null>();
 const result = ref<BeamResult | null>();
 
 const abortController = ref<AbortController | null>();
+
+const canContinue = computed(() => result.value?.status == "success" && ["waiver", "required"].includes(props.country?.status ?? ""));
 
 onBeforeMount(() => beginBeam());
 onUnmounted(() => abortController.value?.abort());

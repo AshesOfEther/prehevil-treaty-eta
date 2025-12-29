@@ -23,6 +23,7 @@
 			<ApplyBeam
 				:username="username"
 				:passport-number="passportNumber"
+				:country="country"
 				v-model="passport"
 				@try-again="currentStep = 'passportInfo'"
 				@continue="currentStep = 'questions'"
@@ -46,7 +47,7 @@ const username = ref("");
 const passportNumber = ref("");
 const passport = ref<Passport | null>();
 
-const country = computed(() => passport.value != null ? countries[passport.value.issuingAuthority] : null);
+const country = computed(() => passport.value != null ? countries[passport.value.issuingAuthority] ?? null : null);
 
 function selectDebugPassport(debugPassport: Passport) {
 	passport.value = debugPassport;
