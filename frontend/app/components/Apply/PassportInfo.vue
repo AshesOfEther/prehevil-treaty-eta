@@ -34,7 +34,10 @@ const emit = defineEmits<{
 
 const hasEpassportPlus = ref<"yes" | "no" | null>();
 const username = defineModel("username", { default: "" });
-const passportNumber = defineModel("passport-number", { default: "" });
+const passportNumber = defineModel("passport-number", {
+	default: "",
+	set: value => value.toUpperCase()
+});
 </script>
 <style>
 .passport-form {
