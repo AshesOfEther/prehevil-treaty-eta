@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v6.1.0
         with:
           node-version: "22"
-      - run: npm install --workspace=frontend
+      - run: npm install --workspace=frontend && npm install --workspace=common
       - run: npm run build --workspace=frontend
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4.0.0
