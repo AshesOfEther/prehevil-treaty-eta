@@ -5,10 +5,6 @@
 			<code id="beam-command">/passport beam {{ beamCode }}</code>
 			<button @click="copyCommand">Copy</button>
 		</div>
-
-		<select>
-			<option value="" selected disabled hidden>Select debug passport...</option>
-		</select>
 	</div>
 	<div v-if="result != null">
 		<template v-if="result.status == 'success'">
