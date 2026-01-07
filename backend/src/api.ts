@@ -1,5 +1,5 @@
 import { H3, H3Event, readBody } from "h3";
-import { ApiApplyRequest, ApiApplyResponse, ApiAttestRequest, ApiAttestResponse, ApiErrorResponse, countries } from "prehevil-treaty-eta-common";
+import { type ApiApplyRequest, type ApiApplyResponse, type ApiAttestRequest, type ApiAttestResponse, type ApiErrorResponse, countries } from "prehevil-treaty-eta-common";
 import { PrismaClient } from "@prisma/client";
 
 type ApiResponse<T> = Promise<T | ApiErrorResponse>;

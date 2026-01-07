@@ -10,6 +10,7 @@
 		"skipLibCheck": true,
 		"moduleResolution": "node16",
 		"resolveJsonModule": true,
-		"allowImportingTsExtensions": true
+		"allowImportingTsExtensions": true,
+		"verbatimModuleSyntax": true
 	}
 }
