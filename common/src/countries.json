@@ -37,7 +37,7 @@
 	},
 	"CYP": {
 		"name": "Cypress",
- 		"status": "required"
+ 		"status": "waiver"
 	},
 	"EGL": {
 		"name": "Eagle City",
