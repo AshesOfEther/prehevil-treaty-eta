@@ -3,7 +3,9 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "tsx watch src/index.ts"
+		"dev": "tsx watch src/index.ts",
+		"start": "prisma migrate deploy && node src/index.ts",
+		"prisma:generate": "prisma generate"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.15.0",
