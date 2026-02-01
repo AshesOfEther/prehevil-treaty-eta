@@ -1,4 +1,4 @@
-import { H3, H3Event, readBody } from "h3";
+import { H3, H3Event, handleCors, readBody } from "h3";
 import { type ApiApplyRequest, type ApiApplyResponse, type ApiAttestRequest, type ApiAttestResponse, type ApiErrorResponse, countries } from "prehevil-treaty-eta-common";
 import { PrismaClient } from "@prisma/client";
 
@@ -10,6 +10,13 @@ const api = new H3({
 	onError(error, event) {
 		console.error(error);
 	},
+});
+
+api.use((event, next) => {
+	if (handleCors(event, { origin: "*" }) !== false) {
+		return "";
+	}
+	next();
 });
 
 api.post("/attest", async (event): ApiResponse<ApiAttestResponse> => {
