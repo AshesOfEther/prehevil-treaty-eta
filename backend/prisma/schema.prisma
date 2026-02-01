@@ -8,12 +8,11 @@ generator client {
 }
 
 model Eta {
-	id Int @id @default(autoincrement())
+	passportNumber String @db.Char(8) @id
 	issuedAt DateTime @default(now())
 	expiresAt DateTime
 
 	passport Passport @relation(fields: [passportNumber], references: [passportNumber])
-	passportNumber String @db.Char(8) @unique
 }
 
 model Passport {
