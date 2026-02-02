@@ -12,11 +12,10 @@ const api = new H3({
 	},
 });
 
-api.use((event, next) => {
+api.use((event) => {
 	if (handleCors(event, { origin: "*" }) !== false) {
 		return "";
 	}
-	next();
 });
 
 api.post("/attest", async (event): ApiResponse<ApiAttestResponse> => {
