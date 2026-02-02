@@ -36,9 +36,20 @@ api.post("/attest", async (event): ApiResponse<ApiAttestResponse> => {
 
 	switch (country.status) {
 		case "required":
+			const eta = await prisma.eta.findUnique({ where: { passportNumber: body.passport.passportNumber } });
+			if (eta == null)
+				return {
+					accepted: false,
+					reason: "none"
+				};
+			if (Date.now() >= eta.expiresAt.valueOf())
+				return {
+					accepted: false,
+					reason: "none"
+				};
 			return {
-				accepted: false,
-				reason: "none"
+				accepted: true,
+				reason: "eta"
 			};
 		case "ftz":
 			return {
