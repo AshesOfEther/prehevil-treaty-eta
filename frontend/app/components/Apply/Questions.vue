@@ -8,7 +8,7 @@
 		</p>
 	</div>
 	<p v-else>Please answer the questions below to determine if you are eligible for an ETA.</p>
-	<form @submit.prevent="emit('continue')">
+	<form @submit.prevent="submit">
 		<fieldset>
 			<legend>Do you have any criminal convictions?</legend>
 			<div>
@@ -60,14 +60,14 @@
 	</div>
 </template>
 <script setup lang="ts">
-import type { Country } from 'prehevil-treaty-eta-common';
+import type { Answers, Country } from 'prehevil-treaty-eta-common';
 
 const { country } = defineProps<{
 	country: Country
 }>();
 
 const emit = defineEmits<{
-	(e: "continue"): void;
+	(e: "submit", answers: Answers): void;
 }>();
 
 const hasCriminalConviction = ref<"yes" | "no" | null>();
@@ -76,4 +76,12 @@ const hasTuberculosis = ref<"yes" | "no" | null>();
 
 const canEnter = computed(() => hasCriminalConviction.value == "no" && hasBeenDeported.value == "no" && hasTuberculosis.value == "no");
 const needsVisa = computed(() => hasCriminalConviction.value == "yes" || hasBeenDeported.value == "yes" || hasTuberculosis.value == "yes");
+
+function submit() {
+	emit("submit", {
+		hasCriminalConviction: hasCriminalConviction.value == "yes",
+		hasBeenDeported: hasBeenDeported.value == "yes",
+		hasTuberculosis: hasTuberculosis.value == "yes"
+	});
+}
 </script>

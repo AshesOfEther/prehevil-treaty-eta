@@ -31,15 +31,17 @@
 		</div>
 		<div v-else-if="currentStep == 'questions'">
 			<h2>Questions</h2>
-			<ApplyQuestions :country="country as Country" />
+			<ApplyQuestions :country="country as Country" @submit="submit" />
 		</div>
 		<div v-else-if="currentStep == 'result'">
-			TODO: Application result
+			<h2>Result</h2>
+			<ApplyResult :result="result as ApiApplyResponse" />
 		</div>
 	</main>
 </template>
 <script setup lang="ts">
-import { countries, type Country, type Passport } from 'prehevil-treaty-eta-common';
+import { countries, type Answers, type ApiApplyResponse, type Country, type Passport } from 'prehevil-treaty-eta-common';
+import { apply } from '~/api';
 
 const currentStep = ref<"introduction" | "passportInfo" | "beam" | "questions" | "result">("introduction");
 
@@ -47,10 +49,21 @@ const username = ref("");
 const passportNumber = ref("");
 const passport = ref<Passport | null>();
 
+const result = ref<ApiApplyResponse | null>();
+
 const country = computed(() => passport.value != null ? countries[passport.value.issuingAuthority] ?? null : null);
 
 function selectDebugPassport(debugPassport: Passport) {
 	passport.value = debugPassport;
 	currentStep.value = "questions";
+}
+
+async function submit(answers: Answers) {
+	result.value = await apply({
+		username: username.value,
+		passport: passport.value as Passport, // Known to be non-null at this point
+		answers
+	});
+	currentStep.value = "result";
 }
 </script>
