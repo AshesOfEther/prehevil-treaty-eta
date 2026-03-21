@@ -51,6 +51,9 @@
 		</template>
 
 	</form>
+	<div v-if="country?.status == 'waiver' && !canEnter && !needsVisa" class="card card-neutral">
+		<p>Answer all questions to see the result.</p>
+	</div>
 	<div v-if="country?.status == 'waiver' && canEnter" class="card card-good">
 		<p>You are elligible to enter the free-travel zone under this arrangement and do not need an ETA.</p>
 	</div>

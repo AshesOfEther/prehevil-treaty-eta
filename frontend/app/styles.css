@@ -107,6 +107,10 @@ tr:nth-of-type(even) {
 	background-color: #660000;
 }
 
+.card-neutral {
+	background-color: #666666;
+}
+
 p:first-child {
 	margin-top: 0;
 }
