@@ -38,7 +38,7 @@ fieldset {
 }
 
 legend {
-	padding: 1rem 0 0.5rem 0;
+	padding: 0 0 0.5rem 0;
 }
 
 button, input, select {
@@ -117,4 +117,53 @@ p:first-child {
 
 p:last-child {
 	margin-bottom: 0;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
+	gap: 1rem;
+}
+
+.form > p {
+	margin: 0;
+}
+
+input[type="radio"] {
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0 0 0 1rem;
+	border-radius: 50%;
+	transition: background-color 0.2s ease-out;
+}
+
+input[type="radio"], input[type="checkbox"] {
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	transition: background-color 0.2s ease-out;
+}
+
+:is(input[type="radio"], input[type="checkbox"]):checked {
+	background-color: var(--color-accent);
+}
+
+input[type="checkbox"] {
+	margin: 0;
+}
+
+.form-radio {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.form-radio > div, .form-checkbox {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }

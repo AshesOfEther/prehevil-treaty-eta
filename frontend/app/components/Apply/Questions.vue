@@ -8,8 +8,8 @@
 		</p>
 	</div>
 	<p v-else>Please answer the questions below to determine if you are eligible for an ETA.</p>
-	<form @submit.prevent="submit">
-		<fieldset>
+	<form class="form" @submit.prevent="submit">
+		<fieldset class="form-radio">
 			<legend>Do you have any criminal convictions?</legend>
 			<div>
 				<input type="radio" name="has-criminal-conviction" value="yes" v-model="hasCriminalConviction" required />
@@ -20,7 +20,7 @@
 				<label for="no">No</label>
 			</div>
 		</fieldset>
-		<fieldset>
+		<fieldset class="form-radio">
 			<legend>Have you ever been deported?</legend>
 			<div>
 				<input type="radio" name="has-been-deported" value="yes" v-model="hasBeenDeported" required />
@@ -31,7 +31,7 @@
 				<label for="no">No</label>
 			</div>
 		</fieldset>
-		<fieldset>
+		<fieldset class="form-radio">
 			<legend>Do you have tuberculosis?</legend>
 			<div>
 				<input type="radio" name="has-tuberculosis" value="yes" v-model="hasTuberculosis" required />
@@ -43,7 +43,7 @@
 			</div>
 		</fieldset>
 		<template v-if="country?.status == 'required'">
-			<div>
+			<div class="form-checkbox">
 				<input type="checkbox" name="confirm" required />
 				<label for="confirm">I hereby confirm that all information provided is accurate.</label>
 			</div>
