@@ -148,7 +148,17 @@ input[type="radio"], input[type="checkbox"] {
 	transition: background-color 0.2s ease-out;
 }
 
-:is(input[type="radio"], input[type="checkbox"]):checked {
+input[type="radio"]:checked::before {
+	content: "";
+	background-color: var(--color-accent);
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	border-radius: 8px;
+	margin: 4px 4px 4px 4px;
+}
+
+input[type="checkbox"]:checked {
 	background-color: var(--color-accent);
 }
 
