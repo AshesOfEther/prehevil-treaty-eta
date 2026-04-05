@@ -3,14 +3,16 @@
 
 	<p>Please have your passport ready before continuing.</p>
 
-	<div>
-		<select v-model="selectedDebugPassport" @change="selectDebugPassport">
-			<option value="" selected disabled hidden>Select debug passport...</option>
-			<option value="ftz">Free-travel zone (Solstice)</option>
-			<option value="waiver">Waiver (TAY)</option>
-			<option value="othder">Other (Aura Regions)</option>
-		</select>
-	</div>
+	<DevOnly>
+		<div>
+			<select v-model="selectedDebugPassport" @change="selectDebugPassport">
+				<option value="" selected disabled hidden>Select debug passport...</option>
+				<option value="ftz">Free-travel zone (Solstice)</option>
+				<option value="waiver">Waiver (TAY)</option>
+				<option value="othder">Other (Aura Regions)</option>
+			</select>
+		</div>
+	</DevOnly>
 
 	<button @click="emit('continue')">Continue</button>
 </template>
