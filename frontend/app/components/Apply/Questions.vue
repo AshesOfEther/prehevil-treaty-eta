@@ -32,6 +32,20 @@
 			</div>
 		</fieldset>
 		<fieldset class="form-radio">
+			<legend>
+				<p>Have you ever been denied entry to a Prehevil Treaty member state?</p>
+				<p class="form-sublegend">Includes {{ memberStates }}.</p>
+			</legend>
+			<div>
+				<input type="radio" name="has-been-deported" value="yes" v-model="hasBeenDeported" required />
+				<label for="yes">Yes</label>
+			</div>
+			<div>
+				<input type="radio" name="has-been-deported" value="no" v-model="hasBeenDeported" />
+				<label for="no">No</label>
+			</div>
+		</fieldset>
+		<fieldset class="form-radio">
 			<legend>Do you have tuberculosis?</legend>
 			<div>
 				<input type="radio" name="has-tuberculosis" value="yes" v-model="hasTuberculosis" required />
@@ -63,7 +77,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import type { Answers, Country } from 'prehevil-treaty-eta-common';
+import { type Answers, type Country, countries } from 'prehevil-treaty-eta-common';
 
 const { country } = defineProps<{
 	country: Country
@@ -73,17 +87,33 @@ const emit = defineEmits<{
 	(e: "submit", answers: Answers): void;
 }>();
 
+const memberStates = Object.values(countries)
+	.filter(country => ["ftz", "waiver"].includes(country.status))
+	.map((country, i, arr) => (i + 1 == arr.length ? "and " : "") + country.name)
+	.sort()
+	.join(", ");
+
 const hasCriminalConviction = ref<"yes" | "no" | null>();
 const hasBeenDeported = ref<"yes" | "no" | null>();
+const hasBeenDenied = ref<"yes" | "no" | null>();
 const hasTuberculosis = ref<"yes" | "no" | null>();
 
-const canEnter = computed(() => hasCriminalConviction.value == "no" && hasBeenDeported.value == "no" && hasTuberculosis.value == "no");
-const needsVisa = computed(() => hasCriminalConviction.value == "yes" || hasBeenDeported.value == "yes" || hasTuberculosis.value == "yes");
+const canEnter = computed(() =>
+	hasCriminalConviction.value == "no" &&
+	hasBeenDeported.value == "no" &&
+	hasTuberculosis.value == "no"
+);
+const needsVisa = computed(() =>
+	hasCriminalConviction.value == "yes" ||
+	hasBeenDeported.value == "yes" ||
+	hasTuberculosis.value == "yes"
+);
 
 function submit() {
 	emit("submit", {
 		hasCriminalConviction: hasCriminalConviction.value == "yes",
 		hasBeenDeported: hasBeenDeported.value == "yes",
+		hasBeenDenied: hasBeenDenied.value == "yes",
 		hasTuberculosis: hasTuberculosis.value == "yes"
 	});
 }

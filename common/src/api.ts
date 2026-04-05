@@ -13,6 +13,7 @@ export interface Passport {
 export interface Answers {
 	hasCriminalConviction: boolean;
 	hasBeenDeported: boolean;
+	hasBeenDenied: boolean;
 	hasTuberculosis: boolean;
 }
 
