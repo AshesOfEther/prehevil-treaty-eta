@@ -1,10 +1,9 @@
 import { H3, H3Event, handleCors, readBody } from "h3";
 import { type ApiApplyRequest, type ApiApplyResponse, type ApiAttestRequest, type ApiAttestResponse, type ApiErrorResponse, countries } from "prehevil-treaty-eta-common";
-import { PrismaClient } from "@prisma/client";
+import { attest } from "./attest.ts";
+import prisma from "./prisma.ts";
 
 type ApiResponse<T> = Promise<T | ApiErrorResponse>;
-
-const prisma = new PrismaClient();
 
 const api = new H3({
 	onError(error, event) {
@@ -32,42 +31,7 @@ api.post("/attest", async (event): ApiResponse<ApiAttestResponse> => {
 		};
 	}
 
-	const country = countries[issuingAuthority];
-
-	switch (country.status) {
-		case "required":
-			const eta = await prisma.eta.findUnique({ where: { passportNumber: body.passport.passportNumber } });
-			if (eta == null)
-				return {
-					accepted: false,
-					reason: "none"
-				};
-			if (Date.now() >= eta.expiresAt.valueOf())
-				return {
-					accepted: false,
-					reason: "none"
-				};
-			return {
-				accepted: true,
-				reason: "eta"
-			};
-		case "ftz":
-			return {
-				accepted: true,
-				reason: "ftz"
-			};
-		case "waiver":
-			return {
-				accepted: true,
-				reason: "waiver"
-			};
-		case "reject": {
-			return {
-				accepted: false,
-				reason: "other"
-			};
-		}
-	}
+	return await attest(issuingAuthority, body.passport.passportNumber);
 });
 
 api.post("/apply", async (event): ApiResponse<ApiApplyResponse> => {
