@@ -1,5 +1,5 @@
 import { H3, H3Event, handleCors, readBody } from "h3";
-import { type ApiApplyRequest, type ApiApplyResponse, type ApiAttestRequest, type ApiAttestResponse, type ApiErrorResponse, countries } from "prehevil-treaty-eta-common";
+import { type ApiApplyRequest, type ApiApplyResponse, type ApiAttestRequest, type ApiAttestResponse, type ApiErrorResponse, type ApiLookupResponse, countries } from "prehevil-treaty-eta-common";
 import { attest } from "./attest.ts";
 import prisma from "./prisma.ts";
 
@@ -113,6 +113,22 @@ api.post("/apply", async (event): ApiResponse<ApiApplyResponse> => {
 		accepted: true,
 		expiresAt: expiresAt.toISOString()
 	};
+});
+
+api.get("/lookup", async (event): ApiResponse<ApiLookupResponse> => {
+	const issuingAuthority = event.url.searchParams.get("issuingAuthority") ?? "";
+	const passportNumber = event.url.searchParams.get("passportNumber") ?? "";
+
+	if (!Object.hasOwn(countries, issuingAuthority)) {
+		event.res.status = 400 // Bad Request
+		return {
+			error: `Issuing authority '${issuingAuthority}' was specified, but it does not exist`
+		};
+	}
+
+	const canEnter = (await attest(issuingAuthority, passportNumber)).accepted;
+
+	return { canEnter };
 });
 
 export default api;

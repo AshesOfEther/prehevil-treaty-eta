@@ -58,3 +58,7 @@ export interface ApiAttestRejectResponse {
 export type ApiAttestRejectReason = "none" | "other";
 
 export type ApiAttestResponse = ApiAttestAcceptResponse | ApiAttestRejectResponse;
+
+export interface ApiLookupResponse {
+	canEnter: boolean;
+}
