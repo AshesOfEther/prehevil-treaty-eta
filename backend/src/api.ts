@@ -11,10 +11,18 @@ const api = new H3({
 	},
 });
 
-api.use((event) => {
-	if (handleCors(event, { origin: "*" }) !== false) {
-		return "";
+api.use((event, next) => {
+	const corsRes = handleCors(event, {
+		origin: "*",
+		preflight: {
+			statusCode: 204
+		},
+		methods: "*"
+	});
+	if (corsRes !== false) {
+		return corsRes;
 	}
+	next();
 });
 
 api.post("/attest", async (event): ApiResponse<ApiAttestResponse> => {
