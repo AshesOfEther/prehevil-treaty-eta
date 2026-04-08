@@ -37,11 +37,11 @@
 				<p class="form-sublegend">Includes {{ memberStates }}.</p>
 			</legend>
 			<div>
-				<input type="radio" name="has-been-deported" value="yes" v-model="hasBeenDeported" required />
+				<input type="radio" name="has-been-denied" value="yes" v-model="hasBeenDenied" required />
 				<label for="yes">Yes</label>
 			</div>
 			<div>
-				<input type="radio" name="has-been-deported" value="no" v-model="hasBeenDeported" />
+				<input type="radio" name="has-been-denied" value="no" v-model="hasBeenDenied" />
 				<label for="no">No</label>
 			</div>
 		</fieldset>
