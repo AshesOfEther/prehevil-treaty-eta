@@ -8,7 +8,7 @@ generator client {
 }
 
 model Eta {
-	passportNumber String @db.Char(8) @id
+	passportNumber String @db.Char(8) @id @unique
 	issuedAt DateTime @default(now())
 	expiresAt DateTime
 
@@ -16,7 +16,7 @@ model Eta {
 }
 
 model Passport {
-	passportNumber String @db.Char(8) @id
+	passportNumber String @db.Char(8) @id @unique
 	username String
 
 	givenName String
