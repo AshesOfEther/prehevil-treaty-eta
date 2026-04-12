@@ -1,4 +1,7 @@
 <template>
+	<div v-if="beamCode == null">
+		<p>Loading, please wait...</p>
+	</div>
 	<div v-if="result == null && beamCode != null">
 		<p>Please run the command below in-game within 60 seconds:</p>
 		<div id="beam-command-row">
