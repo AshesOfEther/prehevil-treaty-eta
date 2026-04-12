@@ -13,6 +13,7 @@
 		<div v-else-if="currentStep == 'passportInfo'">
 			<h2>Passport</h2>
 			<ApplyPassportInfo
+				v-model:has-epassport-plus="hasEpassportPlus"
 				v-model:username="username"
 				v-model:passport-number="passportNumber"
 				@continue="currentStep = 'beam'"
@@ -45,6 +46,7 @@ import { apply } from '~/api';
 
 const currentStep = ref<"introduction" | "passportInfo" | "beam" | "questions" | "result">("introduction");
 
+const hasEpassportPlus = ref<"yes" | "no" | null>();
 const username = ref("");
 const passportNumber = ref("");
 const passport = ref<Passport | null>();

@@ -33,7 +33,7 @@ const emit = defineEmits<{
 	(e: "continue"): void
 }>();
 
-const hasEpassportPlus = ref<"yes" | "no" | null>();
+const hasEpassportPlus = defineModel<"yes" | "no" | null>("has-epassport-plus");
 const username = defineModel("username", { default: "" });
 const passportNumber = defineModel("passport-number", {
 	default: "",
