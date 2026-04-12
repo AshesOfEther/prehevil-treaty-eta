@@ -183,4 +183,5 @@ input[type="checkbox"] {
 .form-sublegend {
 	font-size: 0.875rem;
 	color: var(--color-gray-light);
+	margin-top: 0.5rem;
 }

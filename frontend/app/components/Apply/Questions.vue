@@ -33,8 +33,8 @@
 		</fieldset>
 		<fieldset class="form-radio">
 			<legend>
-				<p>Have you ever been denied entry to a Prehevil Treaty member state?</p>
-				<p class="form-sublegend">Includes {{ memberStates }}.</p>
+				<div>Have you ever been denied entry to a Prehevil Treaty member state?</div>
+				<div class="form-sublegend">Includes {{ memberStates }}.</div>
 			</legend>
 			<div>
 				<input type="radio" name="has-been-denied" value="yes" v-model="hasBeenDenied" required />
