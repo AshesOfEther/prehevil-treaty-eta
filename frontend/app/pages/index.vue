@@ -1,6 +1,5 @@
 <template>
 	<main>
-		<h1>Prehevil Treaty</h1>
 		<h2>About electronic travel authorizations</h2>
 		<p>Under the Prehevil Treaty, the following countries compose a free-travel zone, with a shared visa and electronic travel authorization (ETA) policy:</p>
 
