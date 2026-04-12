@@ -53,7 +53,7 @@
 			</div>
 		</template>
 		<div v-else-if="result.status == 'error'" class="card card-error">
-			{{ errorMessages[result.error] }}
+			{{ errorMessages[result.error] ?? "An unknown error occured. Please try again. If the error persists, please contact support." }}
 		</div>
 		<div class="button-row">
 			<button @click="emit('try-again')">Try again</button>
