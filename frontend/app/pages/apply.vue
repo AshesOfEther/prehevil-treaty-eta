@@ -57,11 +57,11 @@
 		</div>
 		<div v-else-if="currentStep == 'questions'">
 			<h2>Questions</h2>
-			<ApplyQuestions :country="country as Country" @submit="submit" />
+			<ApplyQuestions :country="country!" @submit="submit" />
 		</div>
 		<div v-else-if="currentStep == 'result'">
 			<h2>Result</h2>
-			<ApplyResult :result="result as ApiApplyResponse" />
+			<ApplyResult :result="result!" />
 		</div>
 	</main>
 </template>
