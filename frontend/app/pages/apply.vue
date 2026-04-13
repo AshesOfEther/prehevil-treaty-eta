@@ -1,8 +1,33 @@
 <template>
 	<main>
-		<div>
-
-		</div>
+		<header>
+			<h1>Apply for an ETA</h1>
+			<div id="progress">
+				<div v-for="i in 5" :key="i"  class="progress-step-number" :data-step="i">
+					<div class="progress-step-circle" :class="{'progress-step-active' : i <= currentStepNumber}">
+						{{ i }}
+					</div>
+				</div>
+				<div id="progress-bar-container">
+					<div id="progress-bar"></div>
+				</div>
+				<div class="progress-step-name">
+					Introduction
+				</div>
+				<div class="progress-step-name">
+					Passport
+				</div>
+				<div class="progress-step-name">
+					Beam
+				</div>
+				<div class="progress-step-name">
+					Questions
+				</div>
+				<div class="progress-step-name">
+					Result
+				</div>
+			</div>
+		</header>
 		<div v-if="currentStep == 'introduction'">
 			<h2>Introduction</h2>
 			<ApplyIntroduction
@@ -44,7 +69,10 @@
 import { countries, type Answers, type ApiApplyResponse, type Country, type Passport } from 'prehevil-treaty-eta-common';
 import { apply } from '~/api';
 
+const STEPS: Array<(typeof currentStep)["value"]> = ["introduction", "passportInfo", "beam", "questions", "result"];
+
 const currentStep = ref<"introduction" | "passportInfo" | "beam" | "questions" | "result">("introduction");
+const currentStepNumber = computed(() => STEPS.indexOf(currentStep.value) + 1);
 
 const hasEpassportPlus = ref<"yes" | "no" | null>();
 const username = ref("");
@@ -69,3 +97,66 @@ async function submit(answers: Answers) {
 	currentStep.value = "result";
 }
 </script>
+<style>
+#progress {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(2, auto);
+	counter-reset: step;
+}
+
+.progress-step-number {
+	grid-row: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.progress-step-number:nth-child(1) { grid-column: 1; }
+.progress-step-number:nth-child(2) { grid-column: 2; }
+.progress-step-number:nth-child(3) { grid-column: 3; }
+.progress-step-number:nth-child(4) { grid-column: 4; }
+.progress-step-number:nth-child(5) { grid-column: 5; }
+
+.progress-step-circle {
+	background-color: var(--color-gray);
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.progress-step-active {
+	background-color: var(--color-accent);
+}
+
+#progress-bar-container {
+	grid-row: 1;
+	grid-column: 1 / 6;
+	z-index: -1;
+	display: flex;
+	align-items: center;
+	padding: 0 10% 0 10%;
+}
+
+#progress-bar {
+	background-color: var(--color-gray);
+	flex: 1;
+	height: 0.5rem;
+}
+
+#progress-bar::before {
+	background-color: var(--color-accent);
+	display: block;
+	width: calc(25% * (v-bind(currentStepNumber) - 1));
+	height: 100%;
+	content: "";
+}
+
+.progress-step-name {
+	padding-top: 0.5rem;
+	text-align: center;
+}
+</style>
