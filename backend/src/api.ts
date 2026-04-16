@@ -2,6 +2,7 @@ import { H3, H3Event, handleCors, readBody } from "h3";
 import { type ApiApplyRequest, type ApiApplyResponse, type ApiAttestRequest, type ApiAttestResponse, type ApiErrorResponse, type ApiLookupResponse, countries } from "prehevil-treaty-eta-common";
 import { attest } from "./attest.ts";
 import prisma from "./prisma.ts";
+import { Prisma } from "@prisma/client";
 
 type ApiResponse<T> = Promise<T | ApiErrorResponse>;
 
@@ -93,32 +94,44 @@ api.post("/apply", async (event): ApiResponse<ApiApplyResponse> => {
 		await prisma.eta.delete({ where: { passportNumber } });
 	}
 
-	await prisma.passport.upsert({
-		where: { passportNumber },
-		update: {},
-		create: {
-			passportNumber: passport.passportNumber,
-			username: body.username,
+	try {
+		await prisma.passport.upsert({
+			where: { passportNumber },
+			update: {},
+			create: {
+				passportNumber: passport.passportNumber,
+				username: body.username,
+				givenName: passport.givenName,
+				familyName: passport.familyName,
+				issuingAuthority: passport.issuingAuthority,
+				nationality: passport.nationality,
+				expiryDate: new Date(passport.expiryDate),
+				dateOfBirth: new Date(passport.dateOfBirth),
+				placeOfBirth: passport.placeOfBirth,
+			}
+		});
+	} catch (e) {
+		// Ignore false positive 'Unique constraint failed on the fields: (`passportNumber`)' error from Prisma.
+		if (!(e instanceof Prisma.PrismaClientKnownRequestError && e.code == "P2002"))
+			throw e;
+	}
 
-			givenName: passport.givenName,
-			familyName: passport.familyName,
-			issuingAuthority: passport.issuingAuthority,
-			nationality: passport.nationality,
-			expiryDate: new Date(passport.expiryDate),
-			dateOfBirth: new Date(passport.dateOfBirth),
-			placeOfBirth: passport.placeOfBirth,
-		}
-	});
 
 	const expiresAt = new Date();
 	expiresAt.setUTCDate(expiresAt.getUTCDate() + 7);
 
-	await prisma.eta.create({
-		data: {
-			expiresAt,
-			passportNumber
-		}
-	});
+	try {
+			await prisma.eta.create({
+			data: {
+				expiresAt,
+				passportNumber
+			}
+		});
+	} catch (e) {
+		// Ignore false positive 'Unique constraint failed on the fields: (`passportNumber`)' error from Prisma.
+		if (!(e instanceof Prisma.PrismaClientKnownRequestError && e.code == "P2002"))
+			throw e;
+	}
 
 	return {
 		accepted: true,
