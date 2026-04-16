@@ -83,6 +83,24 @@ const result = ref<ApiApplyResponse | null>();
 
 const country = computed(() => passport.value != null ? countries[passport.value.issuingAuthority] ?? null : null);
 
+// Handle navigations to other routes on this website.
+onBeforeRouteLeave(() => {
+	if (currentStep.value != "result") {
+		const answer = window.confirm("Are you sure you want to leave? Your form progress will not be saved.");
+		if (!answer) return false;
+	}
+
+	window.removeEventListener("beforeunload", preventLeaveHandler);
+});
+
+// Handle navigations away from this website.
+function preventLeaveHandler(event: BeforeUnloadEvent) {
+	event.preventDefault();
+}
+
+if (import.meta.client)
+	window.addEventListener("beforeunload", preventLeaveHandler);
+
 function selectDebugPassport(debugPassport: Passport) {
 	passport.value = debugPassport;
 	currentStep.value = "questions";
