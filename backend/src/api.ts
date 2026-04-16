@@ -7,6 +7,9 @@ type ApiResponse<T> = Promise<T | ApiErrorResponse>;
 
 const api = new H3({
 	onError(error, event) {
+		if (error.status == 404)
+			return;
+
 		console.error(error);
 	},
 });
