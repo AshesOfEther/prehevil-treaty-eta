@@ -21,12 +21,11 @@
 			<p>Your passport will now be scanned. Ensure that you are logged into the server, and then click the button below.</p>
 			<input type="submit" value="I am ready" />
 		</template>
-
-		<div v-if="hasEpassportPlus == 'no'" class="card card-error">
-			<p>ePassport+ is required to apply for an ETA. Please contact your national authority to acquire an ePassport+-enabled passport.</p>
-			<p>If this is not possible, you may instead apply for a visa from your primary destination country, or if one cannot be determined, the free-travel country of first entry. Such a visa will still grant entry into the entire free-travel zone.</p>
-		</div>
 	</form>
+	<div v-if="hasEpassportPlus == 'no'" class="card card-error">
+		<p>ePassport+ is required to apply for an ETA. Please contact your national authority to acquire an ePassport+-enabled passport.</p>
+		<p>If this is not possible, you may instead apply for a visa from your primary destination country, or if one cannot be determined, the free-travel country of first entry. Such a visa will still grant entry into the entire free-travel zone.</p>
+	</div>
 </template>
 <script setup lang="ts">
 const emit = defineEmits<{
