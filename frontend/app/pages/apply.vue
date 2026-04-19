@@ -88,7 +88,10 @@ definePageMeta({
 	description: "An electronic travel authorization lets you travel throughout the Prehevil Treaty free-travel zone without restrictions."
 });
 
-const shouldBlockLeave = () => currentStep.value != "result";
+const shouldBlockLeave = () =>
+	currentStep.value != "result" &&
+	hasEpassportPlus.value != "no" &&
+	!(currentStep.value == "questions" && country.value?.status == "waiver");
 
 // Handle navigations to other routes on this website.
 onBeforeRouteLeave(() => {
