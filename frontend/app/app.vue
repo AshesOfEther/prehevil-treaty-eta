@@ -1,6 +1,7 @@
 <template>
 	<div id="container">
-		<header>
+		<header id="header">
+			<img id="header-logo" src="~/assets/logo.svg">
 			<div id="header-title">Prehevil Treaty</div>
 		</header>
 		<NuxtRouteAnnouncer />
@@ -33,8 +34,21 @@ useHead({
 	padding: 1rem;
 }
 
+#header {
+	height: 3rem;
+	display: flex;
+	gap: 0.75rem;
+	align-items: center;
+}
+
 #header-title {
 	font-size: 1.5rem;
 	font-weight: medium;
+	line-height: 2rem;
+}
+
+#header-logo {
+	height: 100%;
+	aspect-ratio: auto;
 }
 </style>
