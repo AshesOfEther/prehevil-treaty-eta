@@ -45,7 +45,7 @@
 			/>
 		</div>
 		<div v-else-if="currentStep == 'beam'">
-			<h2>Passport</h2>
+			<h2>Beam</h2>
 			<ApplyBeam
 				:username="username"
 				:passport-number="passportNumber"
