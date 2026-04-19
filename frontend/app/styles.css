@@ -54,7 +54,6 @@ button, input, select {
 button, input[type="submit"] {
 	background-color: var(--color-accent);
 	font-weight: bold;
-	transition: background-color 0.2s ease-out;
 }
 
 :is(button, input[type="submit"]):hover {
