@@ -83,6 +83,11 @@ const result = ref<ApiApplyResponse | null>();
 
 const country = computed(() => passport.value != null ? countries[passport.value.issuingAuthority] ?? null : null);
 
+definePageMeta({
+	title: "Apply for an ETA",
+	description: "An electronic travel authorization lets you travel throughout the Prehevil Treaty free-travel zone without restrictions."
+});
+
 // Handle navigations to other routes on this website.
 onBeforeRouteLeave(() => {
 	if (currentStep.value != "result") {
