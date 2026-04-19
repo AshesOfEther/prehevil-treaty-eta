@@ -88,9 +88,11 @@ definePageMeta({
 	description: "An electronic travel authorization lets you travel throughout the Prehevil Treaty free-travel zone without restrictions."
 });
 
+const shouldBlockLeave = () => currentStep.value != "result";
+
 // Handle navigations to other routes on this website.
 onBeforeRouteLeave(() => {
-	if (currentStep.value != "result") {
+	if (shouldBlockLeave()) {
 		const answer = window.confirm("Are you sure you want to leave? Your form progress will not be saved.");
 		if (!answer) return false;
 	}
@@ -100,7 +102,8 @@ onBeforeRouteLeave(() => {
 
 // Handle navigations away from this website.
 function preventLeaveHandler(event: BeforeUnloadEvent) {
-	event.preventDefault();
+	if (shouldBlockLeave())
+		event.preventDefault();
 }
 
 if (import.meta.client)
