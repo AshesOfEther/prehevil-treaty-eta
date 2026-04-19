@@ -8,7 +8,7 @@
 		<p>If you disagree with this assessment, you may apply for a visa at the consulate of your primary destination state in the free-travel zone, or if none can be determined, the free-travel state of first entry.</p>
 	</div>
 	<p>
-		<a href="/">Return to home page</a>
+		<NuxtLink to="/">Return to home page</NuxtLink>
 	</p>
 </template>
 <script setup lang="ts">

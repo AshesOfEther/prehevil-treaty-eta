@@ -28,7 +28,7 @@
 			<p>If this is not possible, you may instead apply for a visa from your primary destination country, or if one cannot be determined, the free-travel country of first entry. Such a visa will still grant entry into the entire free-travel zone.</p>
 		</div>
 		<p>
-			<a href="/">Return to home page</a>
+			<NuxtLink to="/">Return to home page</NuxtLink>
 		</p>
 	</template>
 </template>

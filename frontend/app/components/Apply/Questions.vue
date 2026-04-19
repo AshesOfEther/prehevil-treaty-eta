@@ -76,7 +76,7 @@
 		<p>Please contact your destination country's embassy for further assistance.</p>
 	</div>
 	<p v-if="country.status == 'waiver'">
-		<a href="/">Return to home page</a>
+		<NuxtLink to="/">Return to home page</NuxtLink>
 	</p>
 </template>
 <script setup lang="ts">
