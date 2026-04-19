@@ -13,7 +13,7 @@
 
 		<p>The ETA system enhances the security of the zone's borders, by enabling the countries to perform checks before arrival.</p>
 
-		<p>Prehevil Treaty ETAs are not usable for entry into TAY. <a href="https://tay.aircs.racing/eta">You can apply for a TAY ETA here</a>.</p>
+		<p>Prehevil Treaty ETAs are not usable for entry into TAY or Cypress. <a href="https://tay.aircs.racing/eta">You can apply for a TAY ETA here</a>.</p>
 
 		<h2>Apply for an ETA</h2>
 
