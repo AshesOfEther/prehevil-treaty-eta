@@ -3,8 +3,8 @@
 }
 
 :root {
-	--color-accent: #C37F00;
-	--color-accent-light: #EB9800;
+	--color-accent: #0076A8;
+	--color-accent-light: oklch(from var(--color-accent) calc(l + 0.1) c h);
 	--color-gray: #484848;
 	--color-gray-light: #999999;
 	--color-gray-dark: #2e2e2e;
