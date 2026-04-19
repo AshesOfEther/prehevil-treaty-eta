@@ -7,6 +7,9 @@
 		<p>Your application for an electronic travel application has been rejected.</p>
 		<p>If you disagree with this assessment, you may apply for a visa at the consulate of your primary destination state in the free-travel zone, or if none can be determined, the free-travel state of first entry.</p>
 	</div>
+	<p>
+		<a href="/">Return to home page</a>
+	</p>
 </template>
 <script setup lang="ts">
 import type { ApiApplyResponse } from 'prehevil-treaty-eta-common';

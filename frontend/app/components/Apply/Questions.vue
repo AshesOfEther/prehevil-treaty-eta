@@ -75,6 +75,9 @@
 		<p>You will need a visa to be able to enter the free-travel zone.</p>
 		<p>Please contact your destination country's embassy for further assistance.</p>
 	</div>
+	<p v-if="country.status == 'waiver'">
+		<a href="/">Return to home page</a>
+	</p>
 </template>
 <script setup lang="ts">
 import { type Answers, type Country, countries } from 'prehevil-treaty-eta-common';
