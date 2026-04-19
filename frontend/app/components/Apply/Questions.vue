@@ -31,7 +31,7 @@
 				<label for="no">No</label>
 			</div>
 		</fieldset>
-		<fieldset class="form-radio">
+		<fieldset class="form-radio" v-if="country?.status != 'waiver'">
 			<legend>
 				<div>Have you ever been denied entry to a Prehevil Treaty member state?</div>
 				<div class="form-sublegend">Includes {{ memberStates }}.</div>
