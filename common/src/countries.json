@@ -95,6 +95,10 @@
 		"name": "Mojave",
  		"status": "required"
 	},
+	"NNC": {
+		"name": "Northern National Mining Corporation",
+		"status": "required"
+	},
 	"ORP": {
 		"name": "Open Republic",
  		"status": "required"
