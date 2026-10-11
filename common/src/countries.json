@@ -29,7 +29,7 @@
 	},
 	"BHM": {
 		"name": "Bohemia",
- 		"status": "ftz"
+ 		"status": "required"
 	},
 	"GCV": {
 		"name": "Cat Kingdom",
