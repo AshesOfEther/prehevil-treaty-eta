@@ -1,5 +1,5 @@
 import { H3, H3Event, handleCors, readBody } from "h3";
-import { type ApiApplyRequest, type ApiApplyResponse, type ApiAttestRequest, type ApiAttestResponse, type ApiErrorResponse, type ApiLookupResponse, countries } from "prehevil-treaty-eta-common";
+import { type ApiApplyRequest, type ApiApplyResponse, type ApiAttestRequest, type ApiAttestResponse, type ApiErrorResponse, type ApiLookupResponse, countries, type Country } from "prehevil-treaty-eta-common";
 import { attest } from "./attest.ts";
 import prisma from "./prisma.ts";
 import { Prisma } from "@prisma/client";
@@ -153,6 +153,10 @@ api.get("/lookup", async (event): ApiResponse<ApiLookupResponse> => {
 	const canEnter = (await attest(issuingAuthority, passportNumber)).accepted;
 
 	return { canEnter };
+});
+
+api.get("/countries", async (event): ApiResponse<Record<string, Country>> => {
+	return countries;
 });
 
 export default api;
